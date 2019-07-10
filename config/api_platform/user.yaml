@@ -1,0 +1,45 @@
+resources:
+  App\Entity\User:
+    collectionOperations:
+      user_datas:
+        route_name: 'user_datas'
+        controller: 'App\Controller\UserController'
+        swagger_context:
+          summary: récupérer les informations de l'utilisateur connecté
+          responses:
+            200:
+              description: Informations de l'utilisateur connecté
+              schema:
+                type: object
+                properties:
+                  account_type:
+                    type: string
+                    description: type de compte
+    itemOperations:
+      api_user_login:
+        route_name: 'api_user_login'
+        controller: 'App\Controller\AuthController'
+        swagger_context:
+          summary:  Login user
+          parameters:
+            - name: body
+              in: body
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: email of user
+                  password:
+                    type: string
+                    description: password of user
+
+          responses:
+            200:
+              description: Utilisateur connecté
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: token of user connected
